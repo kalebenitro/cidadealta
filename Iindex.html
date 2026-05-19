@@ -1,0 +1,569 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cidade Alta Roleplay - Loja Oficial</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #070707;
+      color: white;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* MENU LATERAL */
+    .sidebar {
+      width: 270px;
+      background: #0c0c0c;
+      border-right: 2px solid #ff2d2d;
+      padding: 20px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
+      color: #ff2d2d;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .sidebar button {
+      width: 100%;
+      background: #111;
+      border: 1px solid #2a2a2a;
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+      text-align: left;
+    }
+
+    .sidebar button:hover {
+      background: #ff2d2d;
+      border-color: #ff2d2d;
+    }
+
+    /* AREA PRINCIPAL */
+    .main {
+      margin-left: 270px;
+      width: 100%;
+      padding: 25px;
+    }
+
+    header {
+      padding: 25px;
+      background: linear-gradient(120deg, #ff0000, #000000);
+      border-radius: 14px;
+      border: 1px solid #ff2d2d;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin-top: 8px;
+      opacity: 0.9;
+    }
+
+    /* CARRINHO */
+    .cart {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0px 0px 12px rgba(255,0,0,0.12);
+      margin-bottom: 25px;
+    }
+
+    .cart h2 {
+      color: #ff2d2d;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0c0c0c;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .cart-item button {
+      background: #ff2d2d;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .cart-total {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #00ff88;
+      text-align: right;
+    }
+
+    .btn-buy {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #00ff88;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* TITULOS */
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      border-left: 5px solid #ff2d2d;
+      padding-left: 12px;
+      color: #ff2d2d;
+      text-transform: uppercase;
+    }
+
+    /* PRODUTOS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0px 0px 12px rgba(255,0,0,0.12);
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      border-color: #ff2d2d;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00ff88;
+    }
+
+    .btn-add {
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #ff2d2d;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* PIX */
+    .pix-box {
+      background: #0c0c0c;
+      border: 2px solid #00ff88;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #00ff88;
+      margin-top: 15px;
+    }
+
+    .copy-btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #00ff88;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .copy-msg {
+      margin-top: 10px;
+      color: #00ff88;
+      font-weight: bold;
+      text-align: center;
+      display: none;
+    }
+
+    .qr-box {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .qr-box img {
+      width: 240px;
+      padding: 10px;
+      background: white;
+      border-radius: 14px;
+      border: 2px solid #ff2d2d;
+    }
+
+    /* PAINEL ADMIN */
+    .admin-box {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0px 0px 12px rgba(255,0,0,0.12);
+    }
+
+    .admin-box h3 {
+      color: #00ff88;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .admin-info {
+      font-size: 16px;
+      margin-bottom: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #0c0c0c;
+      border: 1px solid #333;
+    }
+
+    .admin-btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #ff2d2d;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      opacity: 0.7;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- MENU -->
+  <div class="sidebar">
+    <h2>📌 CATEGORIAS</h2>
+    <button onclick="showChannel('ids')">📌 Sistema de IDs</button>
+    <button onclick="showChannel('vips')">💎 Sistema de VIPs</button>
+    <button onclick="showChannel('veiculos')">🚗 Veículos</button>
+    <button onclick="showChannel('pacotes')">🔥 Pacotes</button>
+    <button onclick="showChannel('pix')">💳 Pagamento PIX</button>
+    <button onclick="showChannel('admin')">📊 Painel de Lucros</button>
+  </div>
+
+  <div class="main">
+
+    <header>
+      <h1>🏙️ Cidade Alta Roleplay</h1>
+      <p>Loja Oficial - Padrão Cidade Alta</p>
+    </header>
+
+    <!-- CARRINHO -->
+    <div class="cart">
+      <h2>🛒 Carrinho</h2>
+      <div id="cartItems"></div>
+      <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
+      <button class="btn-buy" onclick="finalizarCompra()">💳 FINALIZAR COMPRA</button>
+    </div>
+
+    <!-- IDS -->
+    <div id="ids" class="channel">
+      <h2 class="section-title">📌 Sistema de IDs</h2>
+      <div class="cards">
+        <div class="card"><h3>ID 3 Dígitos</h3><div class="price">R$ 15,00</div><button class="btn-add" onclick="addToCart('ID 3 Dígitos', 15)">Adicionar</button></div>
+        <div class="card"><h3>ID 2 Dígitos</h3><div class="price">R$ 25,00</div><button class="btn-add" onclick="addToCart('ID 2 Dígitos', 25)">Adicionar</button></div>
+        <div class="card"><h3>ID 1 Dígito</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('ID 1 Dígito', 35)">Adicionar</button></div>
+      </div>
+    </div>
+
+    <!-- VIPS -->
+    <div id="vips" class="channel hidden">
+      <h2 class="section-title">💎 Sistema de VIPs</h2>
+      <div class="cards">
+        <div class="card"><h3>VIP Burguês</h3><div class="price">R$ 25,90</div><button class="btn-add" onclick="addToCart('VIP Burguês', 25.90)">Adicionar</button></div>
+        <div class="card"><h3>VIP Luxury</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('VIP Luxury', 30)">Adicionar</button></div>
+        <div class="card"><h3>VIP Flow</h3><div class="price">R$ 35,90</div><button class="btn-add" onclick="addToCart('VIP Flow', 35.90)">Adicionar</button></div>
+        <div class="card"><h3>VIP Alta</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('VIP Alta', 50)">Adicionar</button></div>
+        <div class="card"><h3>Patrocinador</h3><div class="price">R$ 100,00</div><button class="btn-add" onclick="addToCart('Patrocinador', 100)">Adicionar</button></div>
+      </div>
+    </div>
+
+    <!-- VEICULOS -->
+    <div id="veiculos" class="channel hidden">
+      <h2 class="section-title">🚗 Sistema de Veículos</h2>
+      <div class="cards">
+        <div class="card"><h3>Kuruma Blindado</h3><div class="price">R$ 75,00</div><button class="btn-add" onclick="addToCart('Kuruma Blindado', 75)">Adicionar</button></div>
+        <div class="card"><h3>BMW S1000</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('BMW S1000', 50)">Adicionar</button></div>
+        <div class="card"><h3>BMW 1250</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('BMW 1250', 50)">Adicionar</button></div>
+        <div class="card"><h3>BMW M8</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('BMW M8', 30)">Adicionar</button></div>
+        <div class="card"><h3>Mercedez G63</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('Mercedez G63', 35)">Adicionar</button></div>
+        <div class="card"><h3>GTR R35 Libert Walk</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('GTR R35 Libert Walk', 35)">Adicionar</button></div>
+        <div class="card"><h3>350Z</h3><div class="price">R$ 25,00</div><button class="btn-add" onclick="addToCart('350Z', 25)">Adicionar</button></div>
+        <div class="card"><h3>Subaro</h3><div class="price">R$ 40,00</div><button class="btn-add" onclick="addToCart('Subaro', 40)">Adicionar</button></div>
+        <div class="card"><h3>Audi RS5</h3><div class="price">R$ 20,00</div><button class="btn-add" onclick="addToCart('Audi RS5', 20)">Adicionar</button></div>
+        <div class="card"><h3>415 EXCL</h3><div class="price">R$ 40,00</div><button class="btn-add" onclick="addToCart('415 EXCL', 40)">Adicionar</button></div>
+        <div class="card"><h3>BMW M4</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('BMW M4', 30)">Adicionar</button></div>
+        <div class="card"><h3>Brickade 1600KG</h3><div class="price">R$ 60,00</div><button class="btn-add" onclick="addToCart('Brickade 1600KG', 60)">Adicionar</button></div>
+        <div class="card"><h3>Heli Volatus</h3><div class="price">R$ 55,00</div><button class="btn-add" onclick="addToCart('Heli Volatus', 55)">Adicionar</button></div>
+        <div class="card"><h3>Heli Deluxe</h3><div class="price">R$ 45,00</div><button class="btn-add" onclick="addToCart('Heli Deluxe', 45)">Adicionar</button></div>
+        <div class="card"><h3>Heli R44</h3><div class="price">R$ 40,00</div><button class="btn-add" onclick="addToCart('Heli R44', 40)">Adicionar</button></div>
+        <div class="card"><h3>Hilux Facção</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('Hilux Facção', 35)">Adicionar</button></div>
+      </div>
+    </div>
+
+    <!-- PACOTES -->
+    <div id="pacotes" class="channel hidden">
+      <h2 class="section-title">🔥 Pacotes</h2>
+      <div class="cards">
+        <div class="card"><h3>Pacote Facção</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('Pacote Facção', 30)">Adicionar</button></div>
+        <div class="card"><h3>Buffs de Farm</h3><div class="price">R$ 20,00</div><button class="btn-add" onclick="addToCart('Buffs de Farm', 20)">Adicionar</button></div>
+        <div class="card"><h3>Veículo Privado</h3><div class="price">R$ 17,90</div><button class="btn-add" onclick="addToCart('Veículo Privado', 17.90)">Adicionar</button></div>
+        <div class="card"><h3>Garagem Adicional</h3><div class="price">R$ 15,90</div><button class="btn-add" onclick="addToCart('Garagem Adicional', 15.90)">Adicionar</button></div>
+        <div class="card"><h3>Trocar Favela</h3><div class="price">R$ 15,00</div><button class="btn-add" onclick="addToCart('Trocar Favela', 15)">Adicionar</button></div>
+        <div class="card"><h3>Adicionar Blindagem</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('Adicionar Blindagem', 50)">Adicionar</button></div>
+      </div>
+    </div>
+
+    <!-- PIX -->
+    <div id="pix" class="channel hidden">
+      <h2 class="section-title">💳 Pagamento PIX</h2>
+      <p style="opacity:0.9;">Use a chave PIX abaixo para pagamento:</p>
+
+      <div class="pix-box" id="pixKey">202.696.517-05</div>
+
+      <button class="copy-btn" onclick="copiarPix()">📋 COPIAR CHAVE PIX</button>
+      <div class="copy-msg" id="msgCopiado">✅ PIX copiado com sucesso!</div>
+
+      <div class="qr-box">
+        <p style="margin-bottom: 12px; opacity:0.9;">📌 QR Code PIX:</p>
+        <img id="qrPix" src="" alt="QR Code PIX">
+      </div>
+    </div>
+
+    <!-- ADMIN -->
+    <div id="admin" class="channel hidden">
+      <h2 class="section-title">📊 Painel de Lucros</h2>
+
+      <div class="admin-box">
+        <h3>📌 Estatísticas de Vendas</h3>
+
+        <div class="admin-info" id="totalVendas">Total de Vendas: 0</div>
+        <div class="admin-info" id="lucroTotal">Lucro Total: R$ 0,00</div>
+
+        <div class="admin-info" id="vendasSemanal">Vendas na Semana: 0</div>
+        <div class="admin-info" id="lucroSemanal">Lucro Semanal: R$ 0,00</div>
+
+        <div class="admin-info" id="vendasMensal">Vendas no Mês: 0</div>
+        <div class="admin-info" id="lucroMensal">Lucro Mensal: R$ 0,00</div>
+
+        <button class="admin-btn" onclick="resetarRelatorio()">🗑️ RESETAR RELATÓRIO</button>
+      </div>
+
+      <p style="margin-top:15px; opacity:0.7;">
+        ⚠️ Esse painel salva as vendas no navegador.  
+        Se limpar cache, os dados resetam.
+      </p>
+    </div>
+
+    <footer>
+      <p>© 2026 - Cidade Alta Roleplay | Loja Oficial</p>
+    </footer>
+
+  </div>
+
+  <script>
+    let cart = [];
+
+    function showChannel(channelId) {
+      const channels = document.querySelectorAll(".channel");
+      channels.forEach(ch => ch.classList.add("hidden"));
+      document.getElementById(channelId).classList.remove("hidden");
+      atualizarPainel();
+    }
+
+    function addToCart(nome, preco) {
+      cart.push({ nome, preco });
+      atualizarCarrinho();
+    }
+
+    function removerItem(index) {
+      cart.splice(index, 1);
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      let cartItems = document.getElementById("cartItems");
+      let cartTotal = document.getElementById("cartTotal");
+
+      cartItems.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p style='opacity:0.7;'>Carrinho vazio...</p>";
+        cartTotal.innerHTML = "Total: R$ 0,00";
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.preco;
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <span>${item.nome} - R$ ${item.preco.toFixed(2).replace(".", ",")}</span>
+            <button onclick="removerItem(${index})">X</button>
+          </div>
+        `;
+      });
+
+      cartTotal.innerHTML = "Total: R$ " + total.toFixed(2).replace(".", ",");
+    }
+
+    function finalizarCompra() {
+      if (cart.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      let total = cart.reduce((sum, item) => sum + item.preco, 0);
+
+      registrarVenda(total);
+
+      alert(
+        "Pedido criado com sucesso!\n\nTotal: R$ " + total.toFixed(2).replace(".", ",") +
+        "\n\nAgora vá na aba PAGAMENTO PIX e realize o pagamento."
+      );
+
+      cart = [];
+      atualizarCarrinho();
+    }
+
+    function copiarPix() {
+      const pix = "202.696.517-05";
+
+      navigator.clipboard.writeText(pix).then(() => {
+        const msg = document.getElementById("msgCopiado");
+        msg.style.display = "block";
+
+        setTimeout(() => {
+          msg.style.display = "none";
+        }, 3000);
+      }).catch(() => {
+        alert("Não foi possível copiar. Copie manualmente: " + pix);
+      });
+    }
+
+    document.getElementById("qrPix").src =
+      "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=202.696.517-05";
+
+    /* SISTEMA DE VENDAS */
+    function registrarVenda(valor) {
+      let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+      vendas.push({ valor: valor, data: new Date().toISOString() });
+      localStorage.setItem("vendas", JSON.stringify(vendas));
+      atualizarPainel();
+    }
+
+    function atualizarPainel() {
+      let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+
+      let totalVendas = vendas.length;
+      let lucroTotal = vendas.reduce((sum, v) => sum + v.valor, 0);
+
+      let agora = new Date();
+
+      let inicioSemana = new Date();
+      inicioSemana.setDate(agora.getDate() - 7);
+
+      let inicioMes = new Date();
+      inicioMes.setDate(1);
+
+      let vendasSemanal = vendas.filter(v => new Date(v.data) >= inicioSemana);
+      let vendasMensal = vendas.filter(v => new Date(v.data) >= inicioMes);
+
+      let lucroSemanal = vendasSemanal.reduce((sum, v) => sum + v.valor, 0);
+      let lucroMensal = vendasMensal.reduce((sum, v) => sum + v.valor, 0);
+
+      document.getElementById("totalVendas").innerHTML = "Total de Vendas: " + totalVendas;
+      document.getElementById("lucroTotal").innerHTML = "Lucro Total: R$ " + lucroTotal.toFixed(2).replace(".", ",");
+
+      document.getElementById("vendasSemanal").innerHTML = "Vendas na Semana: " + vendasSemanal.length;
+      document.getElementById("lucroSemanal").innerHTML = "Lucro Semanal: R$ " + lucroSemanal.toFixed(2).replace(".", ",");
+
+      document.getElementById("vendasMensal").innerHTML = "Vendas no Mês: " + vendasMensal.length;
+      document.getElementById("lucroMensal").innerHTML = "Lucro Mensal: R$ " + lucroMensal.toFixed(2).replace(".", ",");
+    }
+
+    function resetarRelatorio() {
+      if (confirm("Tem certeza que deseja apagar todas as vendas registradas?")) {
+        localStorage.removeItem("vendas");
+        atualizarPainel();
+        alert("Relatório resetado com sucesso!");
+      }
+    }
+
+    atualizarCarrinho();
+    atualizarPainel();
+  </script>
+
+</body>
+</html>
