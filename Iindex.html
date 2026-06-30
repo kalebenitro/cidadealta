@@ -1,691 +1,623 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cidade Alta Roleplay - Loja Oficial</title>
-  <meta name="description" content="Loja Oficial do servidor Cidade Alta Roleplay - IDs, VIPs, Veículos e Pacotes">
-  <meta name="theme-color" content="#ff2d2d">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyper Scripts - Itens para Servidor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+        }
 
-    body {
-      background: #070707;
-      color: white;
-      display: flex;
-      min-height: 100vh;
-    }
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
 
-    /* MENU LATERAL */
-    .sidebar {
-      width: 270px;
-      background: #0c0c0c;
-      border-right: 2px solid #ff2d2d;
-      padding: 20px;
-      position: fixed;
-      height: 100vh;
-      overflow-y: auto;
-      z-index: 10;
-    }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
 
-    .sidebar h2 {
-      font-size: 18px;
-      color: #ff2d2d;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-    }
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .sidebar button {
-      width: 100%;
-      background: #111;
-      border: 1px solid #2a2a2a;
-      color: white;
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.2s;
-      text-align: left;
-    }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .sidebar button:hover {
-      background: #ff2d2d;
-      border-color: #ff2d2d;
-    }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    .sidebar button.active {
-      background: #ff2d2d;
-      border-color: #ff2d2d;
-    }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-    /* AREA PRINCIPAL */
-    .main {
-      margin-left: 270px;
-      width: 100%;
-      padding: 25px;
-    }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
 
-    header {
-      padding: 25px;
-      background: linear-gradient(120deg, #ff0000, #000000);
-      border-radius: 14px;
-      border: 1px solid #ff2d2d;
-      text-align: center;
-      margin-bottom: 25px;
-    }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            transition: width 0.3s;
+        }
 
-    header h1 {
-      font-size: 32px;
-      text-transform: uppercase;
-    }
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
 
-    header p {
-      margin-top: 8px;
-      opacity: 0.9;
-    }
+        /* Seções */
+        .section {
+            display: none;
+            padding: 60px 0;
+        }
 
-    /* CARRINHO */
-    .cart {
-      background: #111;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0px 0px 12px rgba(255,0,0,0.12);
-      margin-bottom: 25px;
-    }
+        .section.active {
+            display: block;
+        }
 
-    .cart h2 {
-      color: #ff2d2d;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-      font-size: 18px;
-    }
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #0c0c0c;
-      border: 1px solid #333;
-      border-radius: 10px;
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
+        /* Grid de Produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
 
-    .cart-item button {
-      background: #ff2d2d;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
 
-    .cart-empty {
-      opacity: 0.7;
-      text-align: center;
-      padding: 20px;
-    }
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
 
-    .cart-total {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #00ff88;
-      text-align: right;
-    }
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .btn-buy {
-      width: 100%;
-      margin-top: 15px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #00ff88;
-      color: black;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+        .product-image::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
 
-    .btn-buy:hover {
-      transform: scale(1.02);
-      box-shadow: 0px 0px 15px rgba(0,255,136,0.3);
-    }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
 
-    /* TITULOS */
-    .section-title {
-      font-size: 20px;
-      margin-bottom: 15px;
-      border-left: 5px solid #ff2d2d;
-      padding-left: 12px;
-      color: #ff2d2d;
-      text-transform: uppercase;
-    }
+        .product-emoji {
+            font-size: 80px;
+            z-index: 1;
+        }
 
-    /* PRODUTOS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
+        .product-info {
+            padding: 20px;
+        }
 
-    .card {
-      background: #111;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0px 0px 12px rgba(255,0,0,0.12);
-      transition: 0.2s;
-    }
+        .product-name {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #00ffff;
+        }
 
-    .card:hover {
-      transform: scale(1.02);
-      border-color: #ff2d2d;
-    }
+        .product-description {
+            color: #cccccc;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
 
-    .card h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+        .product-price {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    .price {
-      font-size: 18px;
-      font-weight: bold;
-      color: #00ff88;
-    }
+        .btn-buy {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
 
-    .btn-add {
-      width: 100%;
-      margin-top: 12px;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      background: #ff2d2d;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+        .btn-buy:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+        }
 
-    .btn-add:hover {
-      transform: scale(1.05);
-    }
+        /* Página Sobre */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.8;
+        }
 
-    .channel {
-      display: none;
-    }
+        .about-content p {
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
 
-    .channel.active {
-      display: block;
-    }
+        /* Página Contato */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
 
-    /* PIX */
-    .pix-box {
-      background: #0c0c0c;
-      border: 2px solid #00ff88;
-      border-radius: 14px;
-      padding: 18px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      color: #00ff88;
-      margin-top: 15px;
-      word-break: break-all;
-    }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-    .copy-btn {
-      width: 100%;
-      margin-top: 15px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #00ff88;
-      color: black;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00ffff;
+        }
 
-    .copy-btn:hover {
-      transform: scale(1.02);
-    }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+        }
 
-    .copy-msg {
-      margin-top: 10px;
-      color: #00ff88;
-      font-weight: bold;
-      text-align: center;
-      display: none;
-    }
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
 
-    .qr-box {
-      margin-top: 20px;
-      text-align: center;
-    }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-    .qr-box img {
-      width: 240px;
-      padding: 10px;
-      background: white;
-      border-radius: 14px;
-      border: 2px solid #ff2d2d;
-    }
+        .btn-submit:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+        }
 
-    /* PAINEL ADMIN */
-    .admin-box {
-      background: #111;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: 0px 0px 12px rgba(255,0,0,0.12);
-    }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+            margin-top: 40px;
+        }
 
-    .admin-box h3 {
-      color: #00ff88;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-    }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .admin-info {
-      font-size: 16px;
-      margin-bottom: 10px;
-      padding: 12px;
-      border-radius: 10px;
-      background: #0c0c0c;
-      border: 1px solid #333;
-    }
+        .modal.active {
+            display: flex;
+        }
 
-    .admin-btn {
-      width: 100%;
-      margin-top: 15px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #ff2d2d;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .modal-content {
+            background: #1a1a2e;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            animation: modalIn 0.3s ease;
+        }
 
-    .admin-btn:hover {
-      transform: scale(1.02);
-    }
+        @keyframes modalIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      opacity: 0.7;
-      font-size: 14px;
-      padding: 20px 0;
-    }
+        .modal h3 {
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
 
-    /* RESPONSIVO */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-        padding: 10px;
-      }
-      .sidebar h2 {
-        width: 100%;
-      }
-      .sidebar button {
-        width: auto;
-        flex: 1;
-        min-width: 120px;
-        font-size: 12px;
-        padding: 8px;
-      }
-      .main {
-        margin-left: 0;
-      }
-      header h1 {
-        font-size: 24px;
-      }
-      .cards {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      }
-    }
-  </style>
+        .modal p {
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        .btn-close {
+            padding: 10px 30px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="background-overlay"></div>
 
-  <!-- MENU -->
-  <div class="sidebar">
-    <h2>📌 CATEGORIAS</h2>
-    <button onclick="showChannel('ids')" class="active">📌 Sistema de IDs</button>
-    <button onclick="showChannel('vips')">💎 Sistema de VIPs</button>
-    <button onclick="showChannel('veiculos')">🚗 Veículos</button>
-    <button onclick="showChannel('pacotes')">🔥 Pacotes</button>
-    <button onclick="showChannel('pix')">💳 Pagamento PIX</button>
-    <button onclick="showChannel('admin')">📊 Painel de Lucros</button>
-  </div>
-
-  <div class="main">
-
+    <!-- Header -->
     <header>
-      <h1>🏙️ Cidade Alta Roleplay</h1>
-      <p>Loja Oficial - Padrão Cidade Alta</p>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">HYPER SCRIPTS</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="nav-link active" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#products" class="nav-link" onclick="showSection('products')">Produtos</a></li>
+                        <li><a href="#about" class="nav-link" onclick="showSection('about')">Sobre</a></li>
+                        <li><a href="#contact" class="nav-link" onclick="showSection('contact')">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <!-- CARRINHO -->
-    <div class="cart">
-      <h2>🛒 Carrinho</h2>
-      <div id="cartItems"></div>
-      <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
-      <button class="btn-buy" onclick="finalizarCompra()">💳 FINALIZAR COMPRA</button>
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Home -->
+        <div id="home" class="section active">
+            <h2>Bem-vindo à Hyper Scripts</h2>
+            <div class="about-content">
+                <p>🚀 Os melhores scripts e itens para seu servidor! Qualidade, segurança e performance garantidas.</p>
+                <p>✨ Explore nossa coleção de produtos premium e transforme seu servidor hoje mesmo.</p>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn-buy" style="width: auto; padding: 15px 40px;" onclick="showSection('products')">
+                    Ver Produtos →
+                </button>
+            </div>
+        </div>
+
+        <!-- Produtos -->
+        <div id="products" class="section">
+            <h2>Nossos Produtos</h2>
+            <div class="products-grid">
+                <div class="product-card" onclick="buyProduct('VIP Pass', 29.99)">
+                    <div class="product-image">
+                        <div class="product-emoji">👑</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">VIP Pass</div>
+                        <div class="product-description">Acesso VIP completo com benefícios exclusivos, comandos especiais e muito mais!</div>
+                        <div class="product-price">R$ 29,99</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); buyProduct('VIP Pass', 29.99)">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="buyProduct('Kit Starter', 49.99)">
+                    <div class="product-image">
+                        <div class="product-emoji">🎒</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Kit Starter</div>
+                        <div class="product-description">Kit inicial completo com armas, ferramentas e recursos para começar sua jornada.</div>
+                        <div class="product-price">R$ 49,99</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); buyProduct('Kit Starter', 49.99)">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="buyProduct('Mega Coins', 99.99)">
+                    <div class="product-image">
+                        <div class="product-emoji">💰</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Mega Coins</div>
+                        <div class="product-description">Pacote com 10.000 coins para usar em todas as lojas do servidor!</div>
+                        <div class="product-price">R$ 99,99</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); buyProduct('Mega Coins', 99.99)">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="buyProduct('Fly Pass', 19.99)">
+                    <div class="product-image">
+                        <div class="product-emoji">🦅</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Fly Pass</div>
+                        <div class="product-description">Habilite o modo de voo em qualquer área do servidor por 30 dias!</div>
+                        <div class="product-price">R$ 19,99</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); buyProduct('Fly Pass', 19.99)">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="buyProduct('Kit Builder', 39.99)">
+                    <div class="product-image">
+                        <div class="product-emoji">🏗️</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Kit Builder</div>
+                        <div class="product-description">Todos os blocos e ferramentas necessárias para construções épicas!</div>
+                        <div class="product-price">R$ 39,99</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); buyProduct('Kit Builder', 39.99)">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="buyProduct('Tag Colorida', 14.99)">
+                    <div class="product-image">
+                        <div class="product-emoji">🎨</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Tag Colorida</div>
+                        <div class="product-description">Personalize seu nome com cores e efeitos exclusivos no chat!</div>
+                        <div class="product-price">R$ 14,99</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); buyProduct('Tag Colorida', 14.99)">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sobre -->
+        <div id="about" class="section">
+            <h2>Sobre Nós</h2>
+            <div class="about-content">
+                <p>🌟 A Hyper Scripts nasceu da paixão por criar experiências únicas em servidores. Somos uma equipe dedicada a desenvolver os melhores scripts e itens para sua comunidade.</p>
+                
+                <p>💎 Nossa missão é fornecer produtos de alta qualidade que transformem completamente a experiência dos jogadores, oferecendo diversão, exclusividade e valor real.</p>
+                
+                <p>⚡ Com mais de 5 anos de experiência no mercado, já atendemos mais de 10.000 clientes satisfeitos em todo o Brasil.</p>
+                
+                <p>🛡️ Todos os nossos produtos são testados e garantidos. Suporte 24/7 para qualquer dúvida ou problema.</p>
+
+                <div style="display: flex; gap: 30px; justify-content: center; margin-top: 40px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px;">🚀</div>
+                        <div style="color: #00ffff; font-size: 24px; font-weight: bold;">10k+</div>
+                        <div style="color: #cccccc;">Clientes</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px;">⭐</div>
+                        <div style="color: #00ffff; font-size: 24px; font-weight: bold;">4.9/5</div>
+                        <div style="color: #cccccc;">Avaliação</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px;">💼</div>
+                        <div style="color: #00ffff; font-size: 24px; font-weight: bold;">50+</div>
+                        <div style="color: #cccccc;">Produtos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contato -->
+        <div id="contact" class="section">
+            <h2>Entre em Contato</h2>
+            <div class="contact-form">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="discord">Discord</label>
+                        <input type="text" id="discord" placeholder="SeuUsuario#0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" required placeholder="Como podemos ajudar?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <!-- IDS -->
-    <div id="ids" class="channel active">
-      <h2 class="section-title">📌 Sistema de IDs</h2>
-      <div class="cards">
-        <div class="card"><h3>ID 3 Dígitos</h3><div class="price">R$ 15,00</div><button class="btn-add" onclick="addToCart('ID 3 Dígitos', 15)">Adicionar</button></div>
-        <div class="card"><h3>ID 2 Dígitos</h3><div class="price">R$ 25,00</div><button class="btn-add" onclick="addToCart('ID 2 Dígitos', 25)">Adicionar</button></div>
-        <div class="card"><h3>ID 1 Dígito</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('ID 1 Dígito', 35)">Adicionar</button></div>
-      </div>
-    </div>
-
-    <!-- VIPS -->
-    <div id="vips" class="channel">
-      <h2 class="section-title">💎 Sistema de VIPs</h2>
-      <div class="cards">
-        <div class="card"><h3>VIP Burguês</h3><div class="price">R$ 25,90</div><button class="btn-add" onclick="addToCart('VIP Burguês', 25.90)">Adicionar</button></div>
-        <div class="card"><h3>VIP Luxury</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('VIP Luxury', 30)">Adicionar</button></div>
-        <div class="card"><h3>VIP Flow</h3><div class="price">R$ 35,90</div><button class="btn-add" onclick="addToCart('VIP Flow', 35.90)">Adicionar</button></div>
-        <div class="card"><h3>VIP Alta</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('VIP Alta', 50)">Adicionar</button></div>
-        <div class="card"><h3>Patrocinador</h3><div class="price">R$ 100,00</div><button class="btn-add" onclick="addToCart('Patrocinador', 100)">Adicionar</button></div>
-      </div>
-    </div>
-
-    <!-- VEICULOS -->
-    <div id="veiculos" class="channel">
-      <h2 class="section-title">🚗 Sistema de Veículos</h2>
-      <div class="cards">
-        <div class="card"><h3>Kuruma Blindado</h3><div class="price">R$ 75,00</div><button class="btn-add" onclick="addToCart('Kuruma Blindado', 75)">Adicionar</button></div>
-        <div class="card"><h3>BMW S1000</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('BMW S1000', 50)">Adicionar</button></div>
-        <div class="card"><h3>BMW 1250</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('BMW 1250', 50)">Adicionar</button></div>
-        <div class="card"><h3>BMW M8</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('BMW M8', 30)">Adicionar</button></div>
-        <div class="card"><h3>Mercedez G63</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('Mercedez G63', 35)">Adicionar</button></div>
-        <div class="card"><h3>GTR R35 Libert Walk</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('GTR R35 Libert Walk', 35)">Adicionar</button></div>
-        <div class="card"><h3>350Z</h3><div class="price">R$ 25,00</div><button class="btn-add" onclick="addToCart('350Z', 25)">Adicionar</button></div>
-        <div class="card"><h3>Subaro</h3><div class="price">R$ 40,00</div><button class="btn-add" onclick="addToCart('Subaro', 40)">Adicionar</button></div>
-        <div class="card"><h3>Audi RS5</h3><div class="price">R$ 20,00</div><button class="btn-add" onclick="addToCart('Audi RS5', 20)">Adicionar</button></div>
-        <div class="card"><h3>415 EXCL</h3><div class="price">R$ 40,00</div><button class="btn-add" onclick="addToCart('415 EXCL', 40)">Adicionar</button></div>
-        <div class="card"><h3>BMW M4</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('BMW M4', 30)">Adicionar</button></div>
-        <div class="card"><h3>Brickade 1600KG</h3><div class="price">R$ 60,00</div><button class="btn-add" onclick="addToCart('Brickade 1600KG', 60)">Adicionar</button></div>
-        <div class="card"><h3>Heli Volatus</h3><div class="price">R$ 55,00</div><button class="btn-add" onclick="addToCart('Heli Volatus', 55)">Adicionar</button></div>
-        <div class="card"><h3>Heli Deluxe</h3><div class="price">R$ 45,00</div><button class="btn-add" onclick="addToCart('Heli Deluxe', 45)">Adicionar</button></div>
-        <div class="card"><h3>Heli R44</h3><div class="price">R$ 40,00</div><button class="btn-add" onclick="addToCart('Heli R44', 40)">Adicionar</button></div>
-        <div class="card"><h3>Hilux Facção</h3><div class="price">R$ 35,00</div><button class="btn-add" onclick="addToCart('Hilux Facção', 35)">Adicionar</button></div>
-      </div>
-    </div>
-
-    <!-- PACOTES -->
-    <div id="pacotes" class="channel">
-      <h2 class="section-title">🔥 Pacotes</h2>
-      <div class="cards">
-        <div class="card"><h3>Pacote Facção</h3><div class="price">R$ 30,00</div><button class="btn-add" onclick="addToCart('Pacote Facção', 30)">Adicionar</button></div>
-        <div class="card"><h3>Buffs de Farm</h3><div class="price">R$ 20,00</div><button class="btn-add" onclick="addToCart('Buffs de Farm', 20)">Adicionar</button></div>
-        <div class="card"><h3>Veículo Privado</h3><div class="price">R$ 17,90</div><button class="btn-add" onclick="addToCart('Veículo Privado', 17.90)">Adicionar</button></div>
-        <div class="card"><h3>Garagem Adicional</h3><div class="price">R$ 15,90</div><button class="btn-add" onclick="addToCart('Garagem Adicional', 15.90)">Adicionar</button></div>
-        <div class="card"><h3>Trocar Favela</h3><div class="price">R$ 15,00</div><button class="btn-add" onclick="addToCart('Trocar Favela', 15)">Adicionar</button></div>
-        <div class="card"><h3>Adicionar Blindagem</h3><div class="price">R$ 50,00</div><button class="btn-add" onclick="addToCart('Adicionar Blindagem', 50)">Adicionar</button></div>
-      </div>
-    </div>
-
-    <!-- PIX -->
-    <div id="pix" class="channel">
-      <h2 class="section-title">💳 Pagamento PIX</h2>
-      <p style="opacity:0.9;">Use a chave PIX abaixo para pagamento:</p>
-
-      <div class="pix-box" id="pixKey">202.696.517-05</div>
-
-      <button class="copy-btn" onclick="copiarPix()">📋 COPIAR CHAVE PIX</button>
-      <div class="copy-msg" id="msgCopiado">✅ PIX copiado com sucesso!</div>
-
-      <div class="qr-box">
-        <p style="margin-bottom: 12px; opacity:0.9;">📌 QR Code PIX:</p>
-        <img id="qrPix" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=202.696.517-05" alt="QR Code PIX" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22250%22><rect width=%22250%22 height=%22250%22 fill=%22%23eee%22/><text x=%22125%22 y=%22125%22 text-anchor=%22middle%22 font-size=%2216%22 fill=%22%23999%22>QR Code</text></svg>';">
-      </div>
-    </div>
-
-    <!-- ADMIN -->
-    <div id="admin" class="channel">
-      <h2 class="section-title">📊 Painel de Lucros</h2>
-
-      <div class="admin-box">
-        <h3>📌 Estatísticas de Vendas</h3>
-
-        <div class="admin-info" id="totalVendas">Total de Vendas: 0</div>
-        <div class="admin-info" id="lucroTotal">Lucro Total: R$ 0,00</div>
-
-        <div class="admin-info" id="vendasSemanal">Vendas na Semana: 0</div>
-        <div class="admin-info" id="lucroSemanal">Lucro Semanal: R$ 0,00</div>
-
-        <div class="admin-info" id="vendasMensal">Vendas no Mês: 0</div>
-        <div class="admin-info" id="lucroMensal">Lucro Mensal: R$ 0,00</div>
-
-        <button class="admin-btn" onclick="resetarRelatorio()">🗑️ RESETAR RELATÓRIO</button>
-      </div>
-
-      <p style="margin-top:15px; opacity:0.7;">
-        ⚠️ Esse painel salva as vendas no navegador.<br>
-        Se limpar cache, os dados resetam.
-      </p>
-    </div>
-
+    <!-- Footer -->
     <footer>
-      <p>© 2026 - Cidade Alta Roleplay | Loja Oficial</p>
+        <p>© 2024 Hyper Scripts - Todos os direitos reservados</p>
+        <p style="color: #00ffff; margin-top: 10px;">Desenvolvido com 💜 para sua comunidade</p>
     </footer>
 
-  </div>
+    <!-- Modal de Compra -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Produto Adicionado!</h3>
+            <p id="modalMessage"></p>
+            <button class="btn-close" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
 
-  <script>
-    let cart = [];
+    <script>
+        function showSection(sectionId) {
+            // Remove active de todas as seções
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active de todos os links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Adiciona active na seção selecionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Adiciona active no link correspondente
+            event.target.classList.add('active');
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-    function showChannel(channelId) {
-      // Esconder todos
-      document.querySelectorAll(".channel").forEach(ch => ch.classList.remove("active"));
-      // Mostrar selecionado
-      document.getElementById(channelId).classList.add("active");
-      
-      // Atualizar botão ativo
-      document.querySelectorAll(".sidebar button").forEach(btn => btn.classList.remove("active"));
-      const buttons = document.querySelectorAll(".sidebar button");
-      const channelNames = ["ids", "vips", "veiculos", "pacotes", "pix", "admin"];
-      const index = channelNames.indexOf(channelId);
-      if (index >= 0 && index < buttons.length) {
-        buttons[index].classList.add("active");
-      }
-      
-      atualizarPainel();
-    }
+        function buyProduct(productName, price) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            modalTitle.textContent = '🎉 Produto Selecionado!';
+            modalMessage.textContent = `Você selecionou: ${productName} - R$ ${price.toFixed(2)}\n\nEntre em contato pelo Discord para finalizar a compra!`;
+            
+            modal.classList.add('active');
+        }
 
-    function addToCart(nome, preco) {
-      cart.push({ nome, preco });
-      atualizarCarrinho();
-      
-      // Feedback visual
-      const notification = document.createElement("div");
-      notification.style.cssText = "position:fixed;top:20px;right:20px;background:#00ff88;color:black;padding:15px 25px;border-radius:10px;font-weight:bold;z-index:999;animation:fadeIn 0.3s;";
-      notification.textContent = "✅ " + nome + " adicionado!";
-      document.body.appendChild(notification);
-      setTimeout(() => notification.remove(), 2000);
-    }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
 
-    function removerItem(index) {
-      cart.splice(index, 1);
-      atualizarCarrinho();
-    }
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            modalTitle.textContent = '✅ Mensagem Enviada!';
+            modalMessage.textContent = `Obrigado ${name}! Responderemos em breve no email: ${email}`;
+            
+            modal.classList.add('active');
+            
+            // Limpa o formulário
+            event.target.reset();
+        }
 
-    function atualizarCarrinho() {
-      let cartItems = document.getElementById("cartItems");
-      let cartTotal = document.getElementById("cartTotal");
-
-      if (cart.length === 0) {
-        cartItems.innerHTML = "<div class='cart-empty'>Carrinho vazio...</div>";
-        cartTotal.innerHTML = "Total: R$ 0,00";
-        return;
-      }
-
-      let total = 0;
-      cartItems.innerHTML = "";
-
-      cart.forEach((item, index) => {
-        total += item.preco;
-        cartItems.innerHTML += `
-          <div class="cart-item">
-            <span>${item.nome} - R$ ${item.preco.toFixed(2).replace(".", ",")}</span>
-            <button onclick="removerItem(${index})" aria-label="Remover ${item.nome}">X</button>
-          </div>
-        `;
-      });
-
-      cartTotal.innerHTML = "Total: R$ " + total.toFixed(2).replace(".", ",");
-    }
-
-    function finalizarCompra() {
-      if (cart.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-
-      let total = cart.reduce((sum, item) => sum + item.preco, 0);
-      let itens = cart.map(item => `- ${item.nome}: R$ ${item.preco.toFixed(2).replace(".", ",")}`).join("\n");
-
-      registrarVenda(total);
-
-      alert(
-        "✅ PEDIDO CRIADO COM SUCESSO!\n\n" +
-        itens + "\n\n" +
-        "Total: R$ " + total.toFixed(2).replace(".", ",") + "\n\n" +
-        "Agora vá na aba PAGAMENTO PIX e realize o pagamento.\n" +
-        "Após o pagamento, envie o comprovante para um administrador."
-      );
-
-      cart = [];
-      atualizarCarrinho();
-    }
-
-    function copiarPix() {
-      const pix = document.getElementById("pixKey").textContent;
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(pix).then(() => {
-          mostrarMsgCopiado();
-        }).catch(() => {
-          fallbackCopiar(pix);
+        // Fechar modal clicando fora
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
-      } else {
-        fallbackCopiar(pix);
-      }
-    }
-
-    function fallbackCopiar(texto) {
-      const textarea = document.createElement("textarea");
-      textarea.value = texto;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        document.execCommand("copy");
-        mostrarMsgCopiado();
-      } catch (e) {
-        alert("Não foi possível copiar. Copie manualmente: " + texto);
-      }
-      document.body.removeChild(textarea);
-    }
-
-    function mostrarMsgCopiado() {
-      const msg = document.getElementById("msgCopiado");
-      msg.style.display = "block";
-      msg.style.animation = "fadeIn 0.3s";
-      setTimeout(() => {
-        msg.style.display = "none";
-      }, 3000);
-    }
-
-    /* SISTEMA DE VENDAS */
-    function registrarVenda(valor) {
-      let vendas = [];
-      try {
-        vendas = JSON.parse(localStorage.getItem("cidadeAltaVendas")) || [];
-      } catch(e) {
-        vendas = [];
-      }
-      vendas.push({ valor: valor, data: new Date().toISOString() });
-      localStorage.setItem("cidadeAltaVendas", JSON.stringify(vendas));
-      atualizarPainel();
-    }
-
-    function atualizarPainel() {
-      let vendas = [];
-      try {
-        vendas = JSON.parse(localStorage.getItem("cidadeAltaVendas")) || [];
-      } catch(e) {
-        vendas = [];
-      }
-
-      let totalVendas = vendas.length;
-      let lucroTotal = vendas.reduce((sum, v) => sum + v.valor, 0);
-
-      let agora = new Date();
-
-      let inicioSemana = new Date();
-      inicioSemana.setDate(agora.getDate() - 7);
-
-      let inicioMes = new Date();
-      inicioMes.setDate(1);
-
-      let vendasSemanal = vendas.filter(v => new Date(v.data) >= inicioSemana);
-      let vendasMensal = vendas.filter(v => new Date(v.data) >= inicioMes);
-
-      let lucroSemanal = vendasSemanal.reduce((sum, v) => sum + v.valor, 0);
-      let lucroMensal = vendasMensal.reduce((sum, v) => sum + v.valor, 0);
-
-      const el = (id) => document.getElementById(id);
-      if (el("totalVendas")) el("totalVendas").innerHTML = "Total de Vendas: " + totalVendas;
-      if (el("lucroTotal")) el("lucroTotal").innerHTML = "Lucro Total: R$ " + lucroTotal.toFixed(2).replace(".", ",");
-      if (el("vendasSemanal")) el("vendasSemanal").innerHTML = "Vendas na Semana: " + vendasSemanal.length;
-      if (el("lucroSemanal")) el("lucroSemanal").innerHTML = "Lucro Semanal: R$ " + lucroSemanal.toFixed(2).replace(".", ",");
-      if (el("vendasMensal")) el("vendasMensal").innerHTML = "Vendas no Mês: " + vendasMensal.length;
-      if (el("lucroMensal")) el("lucroMensal").innerHTML = "Lucro Mensal: R$ " + lucroMensal.toFixed(2).replace(".", ",");
-    }
-
-    function resetarRelatorio() {
-      if (confirm("Tem certeza que deseja apagar todas as vendas registradas?")) {
-        localStorage.removeItem("cidadeAltaVendas");
-        atualizarPainel();
-        alert("Relatório resetado com sucesso!");
-      }
-    }
-
-    // Inicializar
-    atualizarCarrinho();
-    atualizarPainel();
-  </script>
-
+    </script>
 </body>
 </html>
